@@ -1,70 +1,56 @@
 "use client";
-import { useState } from 'react';
-import { CAR_BRANDS, MAROC_CITIES } from '@/lib/constants';
 
-export default function AjouterPage() {
-  const [selectedBrand, setSelectedBrand] = useState("");
+import Link from 'next/link';
+import { VILLES } from '@/lib/constants'; // Utilise l'alias @ pour éviter les erreurs de dossier
 
+export default function AjouterVehiculePage() {
   return (
-    <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
-      <div className="glass-card p-12 rounded-[4rem] border-white/5 shadow-2xl">
-        <div className="mb-12">
-          <h2 className="text-5xl font-[1000] italic uppercase tracking-tighter">
-            PROPOSEZ VOTRE <span className="sunset-text italic">VÉHICULE</span>
-          </h2>
-          <p className="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px] mt-4">Rentabilisez votre passion</p>
-        </div>
+    <main className="min-h-screen bg-[#050505] text-white font-sans flex flex-col items-center">
+      <header className="w-full flex justify-between items-center px-12 py-8">
+        <Link href="/" className="text-2xl font-black tracking-widest italic hover:opacity-80 transition">
+          OROCAR
+        </Link>
+        <Link href="/" className="text-xs font-bold text-zinc-500 hover:text-white transition uppercase">
+          Annuler
+        </Link>
+      </header>
 
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* SÉLECTION MARQUE */}
-          <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-widest text-orange-500 ml-4">Marque</label>
-            <select 
-              onChange={(e) => setSelectedBrand(e.target.value)}
-              className="w-full p-5 bg-white/5 border border-white/10 rounded-3xl font-bold text-white outline-none focus:border-orange-500 transition-all appearance-none cursor-pointer"
-            >
-              <option value="" className="bg-slate-900">Choisir une marque</option>
-              {Object.keys(CAR_BRANDS).map(brand => (
-                <option key={brand} value={brand} className="bg-slate-900">{brand}</option>
-              ))}
-            </select>
+      <div className="w-full max-w-2xl px-6 py-12">
+        <h1 className="text-4xl font-black mb-2 italic uppercase">Ajouter votre véhicule</h1>
+        <p className="text-zinc-400 mb-10 font-medium tracking-tight">Remplissez les détails pour commencer à louer.</p>
+
+        <form className="space-y-8">
+          {/* Localisation */}
+          <div className="bg-zinc-900/40 p-8 rounded-3xl border border-zinc-800 space-y-6">
+            <h2 className="text-xs font-bold text-orange-500 uppercase tracking-[0.2em]">Localisation</h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[10px] font-bold text-zinc-500 ml-1 uppercase">Ville</label>
+              <select className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 focus:border-orange-500 outline-none transition font-bold text-sm text-white appearance-none cursor-pointer">
+                <option value="" disabled selected>Où est le véhicule ?</option>
+                {VILLES.map((ville) => (
+                  <option key={ville.id} value={ville.nom} className="bg-zinc-900 text-white">
+                    {ville.nom}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          {/* SÉLECTION MODÈLE (Dynamique) */}
-          <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-widest text-orange-500 ml-4">Modèle</label>
-            <select 
-              disabled={!selectedBrand}
-              className="w-full p-5 bg-white/5 border border-white/10 rounded-3xl font-bold text-white outline-none focus:border-orange-500 transition-all appearance-none cursor-pointer disabled:opacity-20"
-            >
-              <option value="" className="bg-slate-900">Modèle</option>
-              {selectedBrand && (CAR_BRANDS as any)[selectedBrand].map((model: string) => (
-                <option key={model} value={model} className="bg-slate-900">{model}</option>
-              ))}
-            </select>
+          {/* Véhicule */}
+          <div className="bg-zinc-900/40 p-8 rounded-3xl border border-zinc-800 space-y-6">
+            <h2 className="text-xs font-bold text-orange-500 uppercase tracking-[0.2em]">Informations</h2>
+            <div className="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="Marque" className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 focus:border-orange-500 outline-none transition text-sm text-white" />
+              <input type="text" placeholder="Modèle" className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 focus:border-orange-500 outline-none transition text-sm text-white" />
+            </div>
+            <input type="number" placeholder="Prix par jour (DH)" className="w-full bg-zinc-800 p-4 rounded-xl border border-zinc-700 focus:border-orange-500 outline-none transition font-bold text-orange-400 text-sm" />
           </div>
 
-          {/* VILLE */}
-          <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-widest text-orange-500 ml-4">Ville</label>
-            <select className="w-full p-5 bg-white/5 border border-white/10 rounded-3xl font-bold text-white outline-none focus:border-orange-500 transition-all appearance-none cursor-pointer">
-              {MAROC_CITIES.map(city => (
-                <option key={city} value={city} className="bg-slate-900">{city}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* PRIX */}
-          <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-widest text-orange-500 ml-4">Prix / Jour (MAD)</label>
-            <input type="number" placeholder="Ex: 500" className="w-full p-5 bg-white/5 border border-white/10 rounded-3xl font-bold text-white outline-none focus:border-orange-500 transition-all placeholder:text-white/10" />
-          </div>
-
-          <button className="sunset-btn md:col-span-2 py-6 rounded-[2.5rem] font-[1000] italic uppercase tracking-[0.3em] shadow-[0_20px_40px_rgba(255,95,109,0.3)] mt-6">
+          <button type="submit" className="w-full bg-gradient-to-r from-orange-500 to-rose-500 p-5 rounded-2xl font-black text-white hover:scale-[1.01] transition-all shadow-2xl shadow-orange-500/20 uppercase tracking-[0.2em] text-sm">
             Publier mon annonce
           </button>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
