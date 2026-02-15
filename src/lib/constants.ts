@@ -16,8 +16,19 @@ export const CAR_BRANDS = {
   "Porsche": ["911", "Cayenne", "Macan", "Panamera", "Taycan"]
 };
 
-export const MAROC_CITIES = [
-  "Casablanca", "Rabat", "Marrakech", "Tanger", "Agadir", 
-  "Fès", "Meknès", "Oujda", "Kénitra", "Tétouan", 
-  "Safi", "Mohammédia", "El Jadida", "Béni Mellal", "Nador"
+export const VILLES = [
+  { id: 1, nom: "Casablanca" }, { id: 2, nom: "Fès" }, { id: 3, nom: "Tanger" },
+  { id: 4, nom: "Marrakech" }, { id: 5, nom: "Salé" }, { id: 6, nom: "Meknès" },
+  { id: 7, nom: "Rabat" }, { id: 8, nom: "Oujda" }, { id: 9, nom: "Kénitra" },
+  { id: 10, nom: "Agadir" }, { id: 11, nom: "Tétouan" }, { id: 12, nom: "Temara" },
+  { id: 13, nom: "Safi" }, { id: 14, nom: "Mohammédia" }, { id: 15, nom: "Khouribga" },
+  { id: 16, nom: "El Jadida" }, { id: 17, nom: "Béni Mellal" }, { id: 18, nom: "Aït Melloul" },
+  { id: 19, nom: "Nador" }, { id: 20, nom: "Dar Bouazza" }, { id: 21, nom: "Taza" },
+  { id: 22, nom: "Settat" }, { id: 23, nom: "Berrechid" }, { id: 24, nom: "Khemisset" },
+  { id: 25, nom: "Inezgane" }, { id: 26, nom: "Ksar El Kébir" }, { id: 27, nom: "Larache" },
+  { id: 28, nom: "Guelmim" }, { id: 29, nom: "Khénifra" }, { id: 30, nom: "Berkane" },
+  { id: 31, nom: "Taourirt" }, { id: 32, nom: "Bouskoura" }, { id: 33, nom: "Fquih Ben Salah" },
+  { id: 34, nom: "Dcheira El Jihadia" }, { id: 35, nom: "Ouarzazate" }, { id: 36, nom: "El Kelaa des Sraghna" },
+  { id: 37, nom: "Sidi Slimane" }, { id: 38, nom: "Errachidia" }, { id: 39, nom: "Guercif" },
+  { id: 40, nom: "Oulad Teïma" }
 ];

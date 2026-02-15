@@ -1,45 +1,64 @@
+"use client";
+
 import Link from 'next/link';
-import { Search, MapPin, Car } from 'lucide-react';
+import { VILLES } from '@/lib/constants'; // On importe la nouvelle liste
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="min-h-screen bg-[#030712] flex flex-col items-center justify-center p-6 text-center">
-      {/* Navbar Minimaliste */}
-      <nav className="absolute top-0 w-full p-8 flex justify-between items-center max-w-7xl">
-        <h1 className="text-2xl font-black italic tracking-tighter">ORO<span className="text-orange-500">CAR</span></h1>
-        <div className="flex gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-          <Link href="/ajouter">Ajouter</Link>
-          <Link href="/catalogue">Louer</Link>
-          <Link href="/login" className="text-white">Connexion</Link>
-        </div>
-      </nav>
+    <main className="min-h-screen bg-[#050505] text-white font-sans flex flex-col">
+      {/* Barre de Navigation */}
+      <header className="flex justify-between items-center px-12 py-8 w-full">
+        <div className="text-2xl font-black tracking-widest italic text-white">OROCAR</div>
+        <nav className="flex items-center gap-8 text-white">
+          <Link href="/ajouter" className="text-sm font-bold hover:text-orange-500 transition uppercase">Ajouter</Link>
+          <Link href="/catalogue" className="text-sm font-bold hover:text-orange-500 transition uppercase">Louer</Link>
+          <Link href="/auth" className="text-sm font-bold border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition uppercase">
+            Connexion
+          </Link>
+        </nav>
+      </header>
 
-      {/* Hero Section */}
-      <div className="max-w-4xl space-y-10">
-        <h2 className="text-6xl md:text-8xl font-[1000] italic leading-none tracking-tighter uppercase">
+      {/* Section Principale */}
+      <section className="flex-1 flex flex-col justify-center items-center px-12 -mt-20">
+        <h1 className="text-7xl md:text-8xl font-black leading-none mb-12 italic tracking-tighter text-center text-white">
           VOTRE LIBERTÉ <br />
-          <span className="bg-gradient-to-r from-[#ff5f6d] to-[#ffc371] bg-clip-text text-transparent">SUR MESURE.</span>
-        </h2>
+          <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
+            SUR MESURE.
+          </span>
+        </h1>
 
-        {/* Barre de Recherche (Style Sophistiqué) */}
-        <div className="bg-white/5 border border-white/10 backdrop-blur-xl p-2 rounded-[2.5rem] flex flex-col md:flex-row gap-2 shadow-2xl">
-          <div className="flex-1 flex items-center gap-4 px-6 py-4">
-            <MapPin className="text-orange-500" size={20} />
-            <input type="text" placeholder="Quelle ville ?" className="bg-transparent outline-none w-full font-bold uppercase text-xs tracking-widest" />
+        {/* Barre de Recherche Dynamique */}
+        <div className="flex bg-zinc-900/50 backdrop-blur-md p-2 rounded-full shadow-2xl border border-zinc-800">
+          <div className="flex items-center bg-white rounded-full px-6 mr-3">
+            <span className="text-black text-xl mr-2">📍</span>
+            <select 
+              className="p-4 w-64 text-black outline-none font-bold bg-transparent appearance-none cursor-pointer"
+              defaultValue=""
+            >
+              <option value="" disabled>Quelle ville ?</option>
+              {/* On boucle sur les 40 villes du Maroc */}
+              {VILLES.map((ville) => (
+                <option key={ville.id} value={ville.nom} className="text-black">
+                  {ville.nom}
+                </option>
+              ))}
+            </select>
           </div>
-          <button className="bg-gradient-to-r from-[#ff5f6d] to-[#ffc371] px-10 py-5 rounded-[2rem] font-black italic uppercase text-xs tracking-widest text-white hover:scale-105 transition-transform">
+          
+          <button className="bg-gradient-to-r from-orange-400 to-rose-400 text-white font-black px-10 rounded-full hover:scale-105 transition-all uppercase tracking-wide">
             Rechercher
           </button>
         </div>
-
-        <Link href="/ajouter" className="inline-flex items-center gap-2 text-slate-500 hover:text-white transition-colors font-bold uppercase text-[10px] tracking-[0.3em]">
-          <Car size={14} /> Devenir Propriétaire
-        </Link>
-      </div>
+      </section>
 
       {/* Footer */}
-      <footer className="absolute bottom-8 text-[10px] font-bold text-slate-600 uppercase tracking-widest">
-        © 2026 OROCAR. Premium Mobility
+      <footer className="py-10 flex flex-col items-center w-full">
+        <Link href="/contact" className="text-zinc-500 text-sm font-bold hover:text-white transition uppercase">
+          Devenir Propriétaire
+        </Link>
+        <p className="text-zinc-700 text-[10px] mt-4 tracking-[0.2em]">
+          © 2026 OROCAR. PREMIUM MOBILITY
+        </p>
       </footer>
     </main>
   );
