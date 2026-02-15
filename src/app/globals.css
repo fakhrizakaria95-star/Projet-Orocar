@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ce code force le fond noir et la police propre sur tout le site */
+body {
+  @apply bg-[#050505] text-white antialiased;
+}
